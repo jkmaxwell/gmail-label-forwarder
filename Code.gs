@@ -1,7 +1,9 @@
 // Gmail Label Forwarder
-// Forwards matching Gmail messages to any address — no add-on, no third-party
-// OAuth, no Gmail "verified forwarding address" restriction. Runs entirely
-// inside your own Google account on a time trigger.
+// Forwards matching Gmail messages to any address — built for sending
+// receipts to Monarch Money (receipts@my.monarch.com), works for anything.
+// No add-on, no third-party OAuth, no Gmail "verified forwarding address"
+// restriction. Runs entirely inside your own Google account on a time
+// trigger. Not associated with Monarch Money.
 //
 // Architecture: RULES (and/or Gmail filters) apply LABEL_NAME, which acts as
 // the queue. forwardLabeled() drains the queue. Setup: see README.md
@@ -10,9 +12,10 @@
 const DEST = 'receipts@my.monarch.com'; // where to forward
 const FROM = 'you@yourdomain.com';      // must be a verified send-as alias
                                         // (Gmail → Settings → Accounts → "Send mail as")
-const LABEL_NAME = 'forward-queue';     // the queue; full path for nested
-                                        // labels, e.g. 'monarch/receipts'
-const DONE_NAME = 'forward-queue-sent'; // applied after forwarding (auto-created)
+const LABEL_NAME = 'monarch/monarch-receipt-forward';      // the queue
+const DONE_NAME = 'monarch/monarch-receipt-forward-sent';  // applied after
+                                        // forwarding; both auto-created,
+                                        // nested under a "monarch" parent
 const BATCH_SIZE = 50;                  // threads per run; keeps runs fast and
                                         // under Gmail's daily send quota
 

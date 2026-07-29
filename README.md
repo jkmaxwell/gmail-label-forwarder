@@ -14,6 +14,12 @@ This is a ~60-line script that lives in **your own Google account** and
 clicks "Forward" for you on a timer. Nobody else's servers, nobody else's
 OAuth. It also works on old mail, not just new mail.
 
+It ships preconfigured for Monarch: destination set to
+`receipts@my.monarch.com`, work tracked under a `monarch` label in your
+Gmail sidebar. One example rule (Apple receipts) is included — add your own
+merchants to the list. Forwarding somewhere other than Monarch is a
+one-line change (`DEST`).
+
 **No coding required.** If you can copy, paste, and click, you can set this
 up in about 10 minutes.
 
@@ -37,8 +43,12 @@ up in about 10 minutes.
 3. Copy the entire contents of [`Code.gs`](Code.gs) from this repo and
    paste it in.
 4. Edit the lines at the top:
-   - `DEST` — where mail should go (e.g. `receipts@my.monarch.com`)
-   - `FROM` — your own email address (see Step 2)
+   - `DEST` — already set to Monarch's `receipts@my.monarch.com`; change it
+     only if you're forwarding somewhere else
+   - `FROM` — your own email address (see Step 2). For Monarch this must be
+     the email address on your Monarch account, or Monarch ignores the mail
+   - The two label names are fine as shipped — they'll appear in your Gmail
+     sidebar nested under a `monarch` parent label, created automatically
    - `RULES` — one line per kind of email to forward. These are ordinary
      Gmail searches, the same thing you'd type in the Gmail search box.
      Example: `'from:no_reply@email.apple.com subject:"Your receipt from Apple"'`
