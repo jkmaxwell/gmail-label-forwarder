@@ -23,6 +23,7 @@ const BATCH_SIZE = 50;                  // threads per run; keeps runs fast and
 // merchant keeps them readable. Leave empty to rely on Gmail filters only.
 const RULES = [
   'from:no_reply@email.apple.com subject:"Your receipt from Apple"',
+  'from:orders@instacart.com subject:"Your Instacart order receipt"',
   // 'from:uber.com subject:"your trip receipt"',
   // 'from:amazon.com subject:"your order"',
 ];
