@@ -24,6 +24,7 @@ const BATCH_SIZE = 50;                  // threads per run; keeps runs fast and
 const RULES = [
   'from:no_reply@email.apple.com subject:"Your receipt from Apple"',
   'from:orders@instacart.com subject:"Your Instacart order receipt"',
+  'from:googleplay-noreply@google.com subject:"Your Google Play Order Receipt"',
   // 'from:uber.com subject:"your trip receipt"',
   // 'from:amazon.com subject:"your order"',
 ];
