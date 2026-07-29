@@ -94,12 +94,36 @@ expect (and nothing you don't).
 That's it. No "Deploy" button needed — that's for web apps; timed triggers
 always run your latest saved code.
 
-### Forwarding old mail
+## First run: processing your old mail
 
-The script normally looks back 2 days (`LOOKBACK`). To forward months of
-history: change `LOOKBACK` to e.g. `'newer_than:1y'`, run `run` manually a
-few times until the log goes quiet, then change it back. Mind the daily
-send limit (see Troubleshooting).
+New mail takes care of itself — the trigger catches anything from the last
+2 days (`LOOKBACK`). Your backlog needs one deliberate pass, two ways to do
+it (they combine fine):
+
+**Widen the lookback (for mail your rules match).**
+
+1. Change `LOOKBACK` to how far back you want, e.g. `'newer_than:1y'`
+2. Run `testRules` first — a dry run that shows what would be forwarded
+3. Run `run` manually; each pass processes 50 threads, so repeat until the
+   execution log shows nothing new happening
+4. **Change `LOOKBACK` back to `'newer_than:2d'`** when done
+
+**Manually label (for anything, rules or not).** In Gmail, select any old
+emails and apply the queue label (`monarch/monarch-receipt-forward`). Age
+doesn't matter — the next run forwards everything wearing that label, then
+moves it to the `-sent` label. This is also how you handle one-off receipts
+that don't fit any rule.
+
+> ⚠️ **Quota warning.** Google limits mail sent by scripts to roughly
+> **100 recipients/day on free Gmail** and **1,500/day on Google
+> Workspace**. A big backlog can hit this — sends start failing until the
+> quota resets (daily, midnight US Pacific). Forward a backlog in chunks
+> across days if needed; the 50-thread batch size is there to keep any
+> single run tame.
+
+Before bulk-forwarding hundreds of receipts, send **one** and confirm it
+actually arrives (see the next section) — don't queue a pile into an
+unproven pipe.
 
 ## If the forwards never arrive (read this before giving up)
 
